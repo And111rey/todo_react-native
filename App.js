@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native';
+// ScrollView - используется для скроулинга по екрану телефона
 
 import { useState } from "react" // импортируем {useState} для создания и работы со стейтами
 
@@ -18,19 +19,22 @@ export default function App() {
         title: title}]
     })
   }
-
+            // Stoped on creating Flatlist, lesson 22
   return (
-    <ScrollView > 
+    <View >  
       < NavBar title="ToDo App" />
       <View style={styles.container}>
         < AddTodo  onSubmit={addTodo}/>
-        <View>
-          {todos.map ((todo) => {
-            return < Todo key={todo.id} todo={todo} />
-          })}
-        </View>
+
+        < FlatList
+          keyExtractor={item => item.id.toString()}  // спостоб передачи ключа в компоненту
+          data={todos} // принимает весь стейт
+          renderItem={({item}) => {return < Todo  todo={item} />}} //отрисовываем и рендерим компоненту
+        />
+
+
       </View>
-    </ScrollView>
+    </View>
   );
 }
 
