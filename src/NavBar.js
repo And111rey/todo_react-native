@@ -5,11 +5,10 @@ import { StyleSheet, Text, View } from 'react-native';
 export  const  NavBar = ({title}) => {
     return (
         <View style={styles.navbar}>
-<Text style={styles.text}> {title}</Text>
+            <Text style={styles.text}> {title}</Text>
         </View>
     )
 }
-
 
 
 
