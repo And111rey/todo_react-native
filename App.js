@@ -32,7 +32,11 @@ export default function App() {
           renderItem={({item}) => {return < Todo  todo={item} />}} //отрисовываем и рендерим компоненту
         />
 
-
+        {/* <View>
+          {todos.map ((todo) => {
+            return < Todo key={todo.id} todo={todo} />
+          })}
+        </View> */}
       </View>
     </View>
   );
