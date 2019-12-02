@@ -13,13 +13,21 @@ export default function App() {
 
 
   const addTodo = (title) => {
-   
     setTodos((prev) => {
       return [...prev, {id: Date.now().toString(), // форматируем в строку
         title: title}]
     })
   }
-            // Stoped on creating Flatlist, lesson 22
+
+  const removeTodo = (id)=> {
+    setTodos((prev) => {
+      prev.filter( todo => todo.id !== id)
+    }) 
+  }
+
+
+
+            // Stoped on creating Flatlist, lesson 22 next 23
   return (
     <View >  
       < NavBar title="ToDo App" />
@@ -27,9 +35,9 @@ export default function App() {
         < AddTodo  onSubmit={addTodo}/>
 
         < FlatList
-          keyExtractor={item => item.id.toString()}  // спостоб передачи ключа в компоненту
+          keyExtractor={(item) => { return item.id.toString()}}  // спостоб передачи ключа в компоненту
           data={todos} // принимает весь стейт
-          renderItem={({item}) => {return < Todo  todo={item} />}} //отрисовываем и рендерим компоненту
+          renderItem={( {item} ) => {return < Todo onRemove={removeTodo}  todo={item} />}} //отрисовываем и рендерим компоненту
         />
 
         {/* <View>

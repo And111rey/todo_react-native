@@ -1,13 +1,22 @@
 import React from "react"
-import { Text, View, StyleSheet } from "react-native"
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native"
 
-export const Todo = ({ todo }) => {
+//TouchableOpacity - при нажатии на элемент он готов к обратотке отвечает на прикосновения
+
+
+export const Todo = ({ todo, onRemove }) => {
     return (
-        <View style={styles.todo}>
-            <Text>{todo.title} </Text>
-        </View>
+        <TouchableOpacity       // данный тег обрабатыве косание 
+            activeOpacity={0.2} // параиетр прозначности при касании
+            onPress={() => { console.log ("Press", todo.id)}}   // событие
+            onLongPress={() => { onRemove(todo.id) }}    // событие "Долгое нажатие"
+        >
+            <View style={styles.todo}>
+                <Text>{todo.title} </Text>
+            </View>
+        </TouchableOpacity>
     )
-}
+} 
 
 const styles = StyleSheet.create({
     todo: {
