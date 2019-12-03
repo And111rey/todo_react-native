@@ -5,11 +5,16 @@ import { Text, View, StyleSheet, TouchableOpacity } from "react-native"
 
 
 export const Todo = ({ todo, onRemove }) => {
+
+    // const rmdItem = () => {
+    //     onRemove(todo.id)
+    // }
+
     return (
         <TouchableOpacity       // данный тег обрабатыве косание 
             activeOpacity={0.2} // параиетр прозначности при касании
             onPress={() => { console.log ("Press", todo.id)}}   // событие
-            onLongPress={() => { onRemove(todo.id) }}    // событие "Долгое нажатие"
+            onLongPress={ () => {onRemove(todo.id)} }    // событие "Долгое нажатие"
         >
             <View style={styles.todo}>
                 <Text>{todo.title} </Text>

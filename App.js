@@ -13,6 +13,8 @@ export default function App() {
 
 
   const addTodo = (title) => {
+    
+
     setTodos((prev) => {
       return [...prev, {id: Date.now().toString(), // форматируем в строку
         title: title}]
@@ -20,8 +22,8 @@ export default function App() {
   }
 
   const removeTodo = (id)=> {
-    setTodos((prev) => {
-      prev.filter( todo => todo.id !== id)
+    setTodos((prev) => {          // с помощью хуков аргумент является состояние ,  его приводит сюда метод useState([])
+      return prev.filter( (todo) => { return todo.id !== id})
     }) 
   }
 
