@@ -2,6 +2,9 @@ import React, {useState} from "react"
 import { View, StyleSheet, TextInput, Button, Alert  } from "react-native"
  // Alert - стилизтроапний вывод текста , взависимости от гаджета 
     //   autoCapitalize -  свойство  <TextInput>,  отвечает за упрвление заглавними буквами
+
+import { THEME } from "../theme"
+
 export const AddTodo = ({  onSubmit }) => {
 
     const [value, setValue] = useState('') 
@@ -45,7 +48,7 @@ const styles  = StyleSheet.create({
         padding: 10,            //отступы внутри элемента
         borderStyle: "solid",   // слить бордера в даном 
         borderBottomWidth: 2,
-        borderBottomColor: "#0B0C0C",
+        borderBottomColor: THEME.MAIN_COLOR ,
 
 
     }

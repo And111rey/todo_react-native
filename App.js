@@ -9,11 +9,14 @@ import { TodoScreen } from "./src/screens/ToDoScreen"
 import { NavBar } from "./src/components/NavBar"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-
+// ............................lesson 28
 export default function App() {
 
-  const [todoId,setTodoid ] = useState(null)
-  const [todos, setTodos] = useState([])
+  const [todoId,setTodoid ] = useState("2")
+  const [todos, setTodos] = useState([
+    {id:"1", title: "Learn react native"},
+    {id:"2", title: "Learn how to deployapp"},
+  ])
 
 
   const addTodo = (title) => {
