@@ -4,7 +4,7 @@ import { Text, View, StyleSheet, TouchableOpacity } from "react-native"
 //TouchableOpacity - при нажатии на элемент он готов к обратотке отвечает на прикосновения
 
 
-export const Todo = ({ todo, onRemove }) => {
+export const Todo = ({ todo, onRemove, onOpen }) => {
 
     // const rmdItem = () => {
     //     onRemove(todo.id)
@@ -13,7 +13,7 @@ export const Todo = ({ todo, onRemove }) => {
     return (
         <TouchableOpacity       // данный тег обрабатыве косание 
             activeOpacity={0.2} // параиетр прозначности при касании
-            onPress={() => { console.log ("Press", todo.id)}}   // событие
+            onPress={()=>{onOpen(todo.id)} }   // событие
             onLongPress={ () => {onRemove(todo.id)} }    // событие "Долгое нажатие"
         >
             <View style={styles.todo}>
@@ -31,6 +31,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#eee",
         borderRadius: 5,
-        marginBottom: 7
+        marginBottom: 7 
     }
 })

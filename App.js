@@ -4,17 +4,19 @@ import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native';
 
 import { useState } from "react" // импортируем {useState} для создания и работы со стейтами
 
-import { AddTodo } from "./src/AddTodo"
-import { NavBar } from "./src/NavBar"
-import { Todo }  from "./src/Todo"
+import { MainScreen } from "./src/screens/Mainscreen"
+import { TodoScreen } from "./src/screens/ToDoScreen"
+import { NavBar } from "./src/components/NavBar"
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
 export default function App() {
 
+  const [todoId,setTodoid ] = useState(null)
   const [todos, setTodos] = useState([])
 
 
   const addTodo = (title) => {
-    
-
     setTodos((prev) => {
       return [...prev, {id: Date.now().toString(), // форматируем в строку
         title: title}]
@@ -27,27 +29,28 @@ export default function App() {
     }) 
   }
 
+  let content = (
+    < MainScreen 
+      todos={todos}
+      addTodo={addTodo} 
+      removeTodo={removeTodo} 
+      openTodo={(id)=>{ setTodoid(id)}}
+    />
+  )
 
 
-            // Stoped on creating Flatlist, lesson 22 next 23
+
+  if (todoId) {
+    const selectedTodo = todos.find((todo) => {return todo.id === todoId})
+    content = < TodoScreen todo={selectedTodo} goBack={()=> {setTodoid(null)}} />
+  }
+
   return (
     <View >  
       < NavBar title="ToDo App" />
-      <View style={styles.container}>
-        < AddTodo  onSubmit={addTodo}/>
-
-        < FlatList
-          keyExtractor={(item) => { return item.id.toString()}}  // спостоб передачи ключа в компоненту
-          data={todos} // принимает весь стейт
-          renderItem={( {item} ) => {return < Todo onRemove={removeTodo}  todo={item} />}} //отрисовываем и рендерим компоненту
-        />
-
-        {/* <View>
-          {todos.map ((todo) => {
-            return < Todo key={todo.id} todo={todo} />
-          })}
-        </View> */}
-      </View>
+        <View style={styles.container}> 
+            {content}
+        </View>
     </View>
   );
 }
