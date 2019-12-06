@@ -8,6 +8,16 @@ import { MainScreen } from "./src/screens/Mainscreen"
 import { TodoScreen } from "./src/screens/ToDoScreen"
 import { NavBar } from "./src/components/NavBar"
 
+import * as Font from "expo-font" // библиотека с помощью котой можно подгрузить данные шрифти
+
+
+async function loadAplication() {
+    await Font.loadAsync({
+        "robora-regular": require("./assets/font/Roboto-Regular.ttf"),
+        "robota-bold": require("./assets/font/Roboto-Bold.ttf")
+    })
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 // ............................lesson 31
 export default function App() {
