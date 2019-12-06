@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, FlatList, Alert } from 'react-native';
 // ScrollView - используется для скроулинга по екрану телефона
 
 import { useState } from "react" // импортируем {useState} для создания и работы со стейтами
@@ -9,7 +9,7 @@ import { TodoScreen } from "./src/screens/ToDoScreen"
 import { NavBar } from "./src/components/NavBar"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-// ............................lesson 28
+// ............................lesson 31
 export default function App() {
 
   const [todoId,setTodoid ] = useState("2")
@@ -27,25 +27,50 @@ export default function App() {
   }
 
   const removeTodo = (id)=> {
-    setTodos((prev) => {          // с помощью хуков аргумент является состояние ,  его приводит сюда метод useState([])
-      return prev.filter( (todo) => { return todo.id !== id})
-    }) 
+    const element =  todos.find(t => t.id === id)
+    Alert.alert(
+      'Удаление елемента',
+      `Вы уверены что хотите удалить "${element.title}" ?`,
+      [
+        {
+          text: 'Отмена',
+          style: 'cancel',
+        },
+        {text: 'Удалить', onPress: () => {
+            setTodoid();
+            setTodos((prev) => {          // с помощью хуков аргумент является состояние ,  его приводит сюда метод useState([])
+            return prev.filter( (todo) => { return todo.id !== id})
+          }) 
+        }},
+      ],
+      {cancelable: false}, // чтоб алерт назакрывался от косания за границей алертного окна
+    );
+
+
   }
 
   let content = (
     < MainScreen 
       todos={todos}
       addTodo={addTodo} 
-      removeTodo={removeTodo} 
+      removeTodo={removeTodo}  
       openTodo={(id)=>{ setTodoid(id)}}
     />
   )
 
+    const upDateTodo = (id, title) => {
+      setTodos(old => old.map(todo => {
+        if (todo.id === id) {
+          todo.title = title
+        }
+        return todo
+      }))
+    }
 
-
+ 
   if (todoId) {
     const selectedTodo = todos.find((todo) => {return todo.id === todoId})
-    content = < TodoScreen todo={selectedTodo} goBack={()=> {setTodoid(null)}} />
+    content = < TodoScreen onSave={upDateTodo} onRemove={removeTodo}  todo={selectedTodo} goBack={()=> {setTodoid(null)}} />
   }
 
   return (
