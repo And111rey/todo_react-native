@@ -12,10 +12,10 @@ import { NavBar } from "./src/components/NavBar"
 // ............................lesson 31
 export default function App() {
 
-  const [todoId,setTodoid ] = useState("2")
+  const [todoId,setTodoid ] = useState(null)
   const [todos, setTodos] = useState([
     {id:"1", title: "Learn react native"},
-    {id:"2", title: "Learn how to deployapp"},
+    // {id:"2", title: "Learn how to deployapp"},
   ])
 
 
@@ -51,7 +51,7 @@ export default function App() {
 
   let content = (
     < MainScreen 
-      todos={todos}
+      todos={todos} 
       addTodo={addTodo} 
       removeTodo={removeTodo}  
       openTodo={(id)=>{ setTodoid(id)}}
