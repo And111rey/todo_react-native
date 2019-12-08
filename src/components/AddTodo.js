@@ -2,6 +2,7 @@ import React, {useState} from "react"
 import { View, StyleSheet, TextInput, Button, Alert  } from "react-native"
  // Alert - стилизтроапний вывод текста , взависимости от гаджета 
     //   autoCapitalize -  свойство  <TextInput>,  отвечает за упрвление заглавними буквами
+import { AntDesign } from "@expo/vector-icons"
 
 import { THEME } from "../theme"
 
@@ -30,7 +31,8 @@ export const AddTodo = ({  onSubmit }) => {
                 autoCorrect={false}  // отключение и всключение попровки при вводе, по умолчанию оно "true" 
                 // keyboardType="number-pad" // атрибут что управляет формой клавиатуры
                 />
-            <Button title="Добавить" onPress={pressHandler} />
+            {/* <Button title="Добавить" onPress={pressHandler} /> */}
+            <AntDesign.Button onPress={pressHandler} name="plussquareo">Добавить</AntDesign.Button>
         </View>
     )
 }
@@ -44,7 +46,7 @@ const styles  = StyleSheet.create({
         marginBottom: 15
     },
     input: {
-        width: "80%",              // ширина елемента
+        width: "70%",              // ширина елемента
         padding: 10,            //отступы внутри элемента
         borderStyle: "solid",   // слить бордера в даном 
         borderBottomWidth: 2,

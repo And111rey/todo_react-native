@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, Button } from "react-native"
 import { THEME } from "../theme"
 import { EditModal } from "../components/EditModal"
 import { AppCard } from "../components/ui/AppCard"
+import { AppTextBolb } from "../components/ui/AppTextBold"
 
 
 export const TodoScreen = ({onRemove, goBack, todo, onSave }) => {
@@ -25,7 +26,7 @@ export const TodoScreen = ({onRemove, goBack, todo, onSave }) => {
             />
             <AppCard style={styles.card} >
                 <AppCard>
-                    <Text style={styles.title}>{todo.title}</Text>
+                    <AppTextBolb style={styles.title}>{todo.title}</AppTextBolb>
                 </AppCard>
                 <Button title="Редактировать" onPress={()=> {setModal(true)} }/>
             </AppCard>

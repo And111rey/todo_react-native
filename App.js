@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, FlatList, Alert } from 'react-native';
+import { StyleSheet, View, Alert } from 'react-native';
 // ScrollView - используется для скроулинга по екрану телефона
 
 import { useState } from "react" // импортируем {useState} для создания и работы со стейтами
