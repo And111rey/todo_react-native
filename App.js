@@ -9,24 +9,35 @@ import { TodoScreen } from "./src/screens/ToDoScreen"
 import { NavBar } from "./src/components/NavBar"
 
 import * as Font from "expo-font" // библиотека с помощью котой можно подгрузить данные шрифти
+import { AppLoading } from "expo"
 
 
-async function loadAplication() {
+async function loadAplication() { // фсинхронная функция что подключает шрифты
     await Font.loadAsync({
-        "robora-regular": require("./assets/font/Roboto-Regular.ttf"),
+        "robora-regular": require("./assets/font/Roboto-Regular.ttf"), // "require" для подключения локальных файлов
         "robota-bold": require("./assets/font/Roboto-Bold.ttf")
     })
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////// ////////////////////////////////////////////////////////////////
 // ............................lesson 31
 export default function App() {
+
+  const [isReady, setIsReady] = useState(false)
 
   const [todoId,setTodoid ] = useState(null)
   const [todos, setTodos] = useState([
     {id:"1", title: "Learn react native"},
     // {id:"2", title: "Learn how to deployapp"},
   ])
+
+  if (!isReady) {
+    return <AppLoading  
+      startAsync={loadAplication} 
+      onError={ err => (console.log(err))}
+      onFinish={()=>setIsReady(true)}
+      />
+  }
 
 
   const addTodo = (title) => {
