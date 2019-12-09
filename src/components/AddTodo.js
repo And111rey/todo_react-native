@@ -1,8 +1,11 @@
 import React, {useState} from "react"
-import { View, StyleSheet, TextInput, Button, Alert  } from "react-native"
+import { View, StyleSheet, TextInput, Button, Alert, Keyboard, Platform  } from "react-native"
  // Alert - стилизтроапний вывод текста , взависимости от гаджета 
     //   autoCapitalize -  свойство  <TextInput>,  отвечает за упрвление заглавними буквами
-import { AntDesign } from "@expo/vector-icons"
+
+    //Keyboard - для управление клавиатурой
+    // Platform
+    import { AntDesign } from "@expo/vector-icons"
 
 import { THEME } from "../theme"
 
@@ -14,12 +17,15 @@ export const AddTodo = ({  onSubmit }) => {
         if (value.trim()) {        // ( trim() - уберает со стороки все пробелыб можно и без него)  если значение пришедшее из <TextInput > валидное 
             onSubmit(value) // закидываем в переменную значение из <TextInput >
             setValue("")    // очищаем стейт, делаем пустую строку 
+            Keyboard.dismiss() //данныйметод убирает клавиатурк при сработке
         } else {
             // err
             Alert.alert("Введите что-то")
         }
 
     }
+
+    // Platform.OS
 
     return(
         <View style={styles.block}>

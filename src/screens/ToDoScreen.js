@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { StyleSheet, View, Text, Button } from "react-native"
+import { StyleSheet, View, Text, Button, Dimensions } from "react-native"
 // Button - отвечает за создание кнопки
 import { THEME } from "../theme"
 import { EditModal } from "../components/EditModal"
@@ -57,13 +57,12 @@ const styles = StyleSheet.create({
         color: "red"
     },
     btn: {
-        width: "50%",
+        width: "45%",  // ширина 30% от родительского компоненета
+        // width: Dimensions.get("window").width / 3, // "Dimensions.get("window").width - выводит число ширины дисплея" 1/3 от ширины экрана
+        // width: Dimensions.get("window").width > 700 ? 150: 100, // условие "если шрина экрана > 400  то ширна будет ...." 
         borderStyle: "solid",   // слить бордера в даном 
         borderRadius: 5,
         elevation: 10,
-        // shadowColor: "#F7C2B8",
-        // shadowRadius: 5,
-        // shadowOpacity: 0.9,
         shadowOffset: {
             width: 10,
             height: 10
