@@ -4,7 +4,8 @@ import { StyleSheet, View, Text, Button } from "react-native"
 import { THEME } from "../theme"
 import { EditModal } from "../components/EditModal"
 import { AppCard } from "../components/ui/AppCard"
-import { AppTextBolb } from "../components/ui/AppTextBold"
+// import { AppTextBolb } from "../components/ui/AppTextBold"
+import { MaterialIcons, Foundation, Entypo } from "@expo/vector-icons"
 
 
 export const TodoScreen = ({onRemove, goBack, todo, onSave }) => {
@@ -26,17 +27,17 @@ export const TodoScreen = ({onRemove, goBack, todo, onSave }) => {
             />
             <AppCard style={styles.card} >
                 <AppCard>
-                    <AppTextBolb style={styles.title}>{todo.title}</AppTextBolb>
+                    <Text style={styles.title}>{todo.title}</Text>
                 </AppCard>
-                <Button title="Редактировать" onPress={()=> {setModal(true)} }/>
+                <Foundation.Button name="page-edit" onPress={()=> {setModal(true)} }></Foundation.Button>
             </AppCard>
             <AppCard>
                 <View style={styles.buttons} > 
                     <View style={styles.btn}>
-                        <Button title="Назад" color={THEME.GREY_COLOR} onPress={goBack}/>
+                        <Entypo.Button name="back" color={THEME.MAIN_COLOR} onPress={goBack}>Назад</Entypo.Button>
                     </View>
                     <View style={styles.btn}>
-                        <Button title="Удалить" color={THEME.DANGER_COLOR} onPress={()=> {onRemove(todo.id)}}/>
+                        <MaterialIcons.Button name="delete" color={THEME.DANGER_COLOR} onPress={()=> {onRemove(todo.id)}}>Удалить</MaterialIcons.Button>
                     </View>
                 </View>
             </AppCard>
