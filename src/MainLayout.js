@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import { View, StyleSheet } from "react-native"
+import { View, StyleSheet, Alert } from "react-native"
 
 import { NavBar } from "./components/NavBar"
 import { MainScreen } from "./screens/Mainscreen"
