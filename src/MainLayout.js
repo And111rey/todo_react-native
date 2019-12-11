@@ -64,7 +64,7 @@ export const MainLayout = () => {
         content = < TodoScreen onSave={updateTodo} onRemove={removeTodo}  todo={selectedTodo} goBack={()=> {setTodoid(null)}} />
       }
 
-    return(
+    return( 
         <View >  
             < NavBar title="ToDo App" />
             <View style={styles.container}>{content}</View>
