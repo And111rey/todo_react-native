@@ -5,7 +5,9 @@ import { useState } from "react" // импортируем {useState} для с�
 
 
 import { MainLayout } from "./src/MainLayout"
+import { ScreenState } from "./src/context/screen/ScreenState"
 import { TodoState } from "./src/context/todo/TodoState"
+
 
 import * as Font from "expo-font" // библиотека с помощью котой можно подгрузить данные шрифти
 import { AppLoading } from "expo"
@@ -35,8 +37,10 @@ export default function App() {
 
 
   return (
+    <ScreenState>
       <TodoState>
         <MainLayout/>
       </TodoState>
+    </ScreenState>
   );
 }

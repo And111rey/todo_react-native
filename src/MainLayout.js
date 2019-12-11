@@ -5,20 +5,15 @@ import { NavBar } from "./components/NavBar"
 import { MainScreen } from "./screens/Mainscreen"
 import { TodoScreen } from "./screens/ToDoScreen"
 import { TodoContext } from "./context/todo/todoContext"
+import { ScreenContext } from "./context/screen/screenContext"
 
 
 export const MainLayout = () => {
     const {todos, addTodo, removeTodo, updateTodo} = useContext(TodoContext)
-    const [todoId,setTodoid ] = useState(null)
-    // const [todos, setTodos] = useState([])
+  useContext(ScreenContext)
 
-    // const addTodo = (title) => {
-    //     setTodos((prev) => {
-    //       return [...prev, {id: Date.now().toString(), 
-    //         title: title}]
-    //     })
-    //   }
-    
+    // const {todoId, changeScreen} = useContext(ScreenContext)
+
     //   const removeTodo = (id)=> {
     //     const element =  todos.find(t => t.id === id)
     //     Alert.alert(
@@ -45,30 +40,22 @@ export const MainLayout = () => {
           todos={todos} 
           addTodo={addTodo} 
           removeTodo={removeTodo}  
-          openTodo={(id)=>{ setTodoid(id)}}
+          openTodo={(id)=>{ changeScreen}}
         />
       )
     
-        // const upDateTodo = (id, title) => {
-        //   setTodos(old => old.map(todo => {
-        //     if (todo.id === id) {
-        //       todo.title = title
-        //     }
-        //     return todo
-        //   }))
-        // }
-    
+
      
       if (todoId) {
         const selectedTodo = todos.find((todo) => {return todo.id === todoId})
-        content = < TodoScreen onSave={updateTodo} onRemove={removeTodo}  todo={selectedTodo} goBack={()=> {setTodoid(null)}} />
+        content = < TodoScreen onSave={updateTodo} onRemove={removeTodo}  todo={selectedTodo} goBack={()=> {changeScreen(null)}} />
       }
 
-    return( 
-        <View >  
-            < NavBar title="ToDo App" />
+    return (
+        <View>  
+            <NavBar title="ToDo App" />
             <View style={styles.container}>{content}</View>
-      </View>
+        </View>
     )
 }
 

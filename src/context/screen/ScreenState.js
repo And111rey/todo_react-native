@@ -1,0 +1,22 @@
+
+
+import React, {useReducer} from "react"
+import {ScreenContext} from "./screenContext"
+import { screanReducer } from "./screeReducer"
+import { CHANGE_SCREEN } from "../todo/types"
+
+export const ScreenState = ({children}) => {
+
+    const [state, dispatch] = useReducer(screanReducer(null))
+
+    const changeScreen = id => dispatch({ type: CHANGE_SCREEN, payload: id})
+
+    return(
+        <ScreenContext.Provider value={{
+            changeScreen,
+            todoId: state 
+        }}>
+            {children}
+        </ScreenContext.Provider>
+    )
+}
