@@ -9,6 +9,7 @@ import * as Font from "expo-font" // библиотека с помощью ко
 import { AppLoading } from "expo"
 import { MainLauOut } from './src/MainLayOut';
 import { TodoState } from "./src/context/todo/TodoState"
+import { ScreenState } from "./src/context/screen/ScreenState"
 
 
 async function loadAplication() { // фсинхронная функция что подключает шрифты
@@ -34,9 +35,11 @@ export default function App() {
 
 
   return (
-    <TodoState>
-      <MainLauOut />
-    </TodoState>
+    <ScreenState>
+      <TodoState>
+        <MainLauOut />
+      </TodoState>
+    </ScreenState>
     
   );
 }

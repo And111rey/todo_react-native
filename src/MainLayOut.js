@@ -5,11 +5,11 @@ import { NavBar } from "./components/NavBar"
 import { MainScreen } from "./screens/Mainscreen"
 import { TodoScreen } from "./screens/ToDoScreen"
 import { TodoContext } from "./context/todo/todoContext"
+import { ScreanContext } from "./context/screen/screenContext"
 
 export const MainLauOut = () => {
     const {todos, addTodo, removeTodo, upDateTodo} = useContext(TodoContext)
-    const [todoId,setTodoid ] = useState(null)
-    // const [todos, setTodos] = useState([])
+    const {todoId, changeScreen} = useContext(ScreanContext)
 
 
 
@@ -53,17 +53,17 @@ export const MainLauOut = () => {
       todos={todos} 
       addTodo={addTodo} 
       removeTodo={removeTodo}  
-      openTodo={(id)=>{ setTodoid(id)}}
+      openTodo={changeScreen}
     />
   )
     
   if (todoId) {
     const selectedTodo = todos.find((todo) => {return todo.id === todoId})
-    content = < TodoScreen 
+    content = <TodoScreen 
       onSave={upDateTodo} 
       onRemove={removeTodo} 
       todo={selectedTodo} 
-      goBack={()=> {setTodoid(null)}}
+      goBack={()=> {changeScreen(null)}}
     />
   }
   
