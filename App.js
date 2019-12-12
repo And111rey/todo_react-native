@@ -18,8 +18,6 @@ async function loadAplication() { // фсинхронная функция чт�
     })
 }
 
-/////////////////////////////////////// ////////////////////////////////////////////////////////////////
-// ............................lesson 31
 export default function App() {
 
   const [isReady, setIsReady] = useState(false)
