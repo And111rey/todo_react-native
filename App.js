@@ -19,15 +19,13 @@ async function loadAplication() { // фсинхронная функция чт�
     })
 }
 
-/////////////////////////////////////// ////////////////////////////////////////////////////////////////
-// ............................lesson 31
+
 export default function App() {
 
   const [isReady, setIsReady] = useState(false)
 
   const [todoId,setTodoid ] = useState(null)
-  const [todos, setTodos] = useState([
-    {id:"1", title: "Learn react native"},
+  const [todos, setTodos] = useState([ {id:"1", title: "Learn react native"},
     // {id:"2", title: "Learn how to deployapp"},
   ])
 
@@ -48,7 +46,7 @@ export default function App() {
   }
 
   const removeTodo = (id)=> {
-    const element =  todos.find(t => t.id === id)
+    const element =  todos.todos.find(t => t.id === id)
     Alert.alert(
       'Удаление елемента',
       `Вы уверены что хотите удалить "${element.title}" ?`,
@@ -72,7 +70,7 @@ export default function App() {
 
   let content = (
     < MainScreen 
-      todos={todos} 
+      todos={todos.todos} 
       addTodo={addTodo} 
       removeTodo={removeTodo}  
       openTodo={(id)=>{ setTodoid(id)}}
@@ -90,7 +88,7 @@ export default function App() {
 
  
   if (todoId) {
-    const selectedTodo = todos.find((todo) => {return todo.id === todoId})
+    const selectedTodo = todos.todos.find((todo) => {return todo.id === todoId})
     content = < TodoScreen onSave={upDateTodo} onRemove={removeTodo}  todo={selectedTodo} goBack={()=> {setTodoid(null)}} />
   }
 
