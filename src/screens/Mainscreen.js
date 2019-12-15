@@ -5,10 +5,11 @@ import { AddTodo } from "../components/AddTodo"
 import { Todo } from "../components/Todo"
 import { TodoContext } from "../context/todo/todoContext"
 import { ScreanContext } from "../context/screen/screenContext"
+import {Apploader} from "../components/AppLoader"
 
 
 export const MainScreen = () => {
-    const {addTodo, todos, removeTodo, fetchTodos} = useContext(TodoContext)
+    const {addTodo, todos, removeTodo, fetchTodos, loading} = useContext(TodoContext)
     const {changeScreen} = useContext(ScreanContext)
 
 
@@ -16,6 +17,11 @@ export const MainScreen = () => {
     useEffect(()=>{
         loadTodos()
     }, [])
+
+
+    if(loading) {
+        return <Apploader/>
+    }
 
     let content = (
         < FlatList

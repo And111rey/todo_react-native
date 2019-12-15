@@ -11,7 +11,6 @@ export const MainLauOut = () => {
     // const {todos, addTodo, removeTodo, upDateTodo} = useContext(TodoContext)
     const {todoId} = useContext(ScreanContext)
 
-console.log(todoId) 
     return (
         <View style={{flex: 1}}>  
         < NavBar title="ToDo App" />
