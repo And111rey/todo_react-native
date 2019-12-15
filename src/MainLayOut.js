@@ -13,7 +13,7 @@ export const MainLauOut = () => {
 
 console.log(todoId) 
     return (
-        <View >  
+        <View style={{flex: 1}}>  
         < NavBar title="ToDo App" />
           <View style={styles.container}> 
               {todoId? <TodoScreen />: <MainScreen />}
@@ -24,6 +24,7 @@ console.log(todoId)
 
 const styles = StyleSheet.create({
     container: {
+     flex:1,
      paddingHorizontal: 30,
      paddingVertical: 20
     } 
