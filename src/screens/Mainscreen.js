@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react"
+import React, { useState, useContext, useEffect, useCallback } from "react"
 import { StyleSheet, View, FlatList, Image} from "react-native"
 
 import { AddTodo } from "../components/AddTodo"
@@ -8,8 +8,14 @@ import { ScreanContext } from "../context/screen/screenContext"
 
 
 export const MainScreen = () => {
-    const {addTodo, todos, removeTodo} = useContext(TodoContext)
+    const {addTodo, todos, removeTodo, fetchTodos} = useContext(TodoContext)
     const {changeScreen} = useContext(ScreanContext)
+
+
+    const loadTodos = useCallback(async ()=> await fetchTodos(), [fetchTodos])
+    useEffect(()=>{
+        loadTodos()
+    }, [])
 
     let content = (
         < FlatList
