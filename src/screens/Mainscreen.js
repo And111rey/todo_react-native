@@ -1,19 +1,24 @@
-import React from "react"
+import React, { useState, useContext, useEffect } from "react"
 import { StyleSheet, View, FlatList, Image} from "react-native"
 
 import { AddTodo } from "../components/AddTodo"
 import { Todo } from "../components/Todo"
+import { TodoContext } from "../context/todo/todoContext"
+import { ScreanContext } from "../context/screen/screenContext"
 
 
-export const MainScreen = ({ addTodo, todos, removeTodo, openTodo }) => {
-    
+export const MainScreen = () => {
+    const {addTodo, todos, removeTodo} = useContext(TodoContext)
+    const {changeScreen} = useContext(ScreanContext)
+
     let content = (
         < FlatList
         keyExtractor={(item) => { return item.id.toString()}}  // спостоб передачи ключа в компоненту
         data={todos} // принимает весь стейт
-        renderItem={( {item} ) => {return < Todo onRemove={removeTodo}  todo={item} onOpen={openTodo}/>}} //отрисовываем и рендерим компоненту
+        renderItem={( {item} ) => {return < Todo onRemove={removeTodo}  todo={item} onOpen={changeScreen}/>}} //отрисовываем и рендерим компоненту
         />
     )
+    
     // два спооба загрузки картинок разних форматов 
         if (todos.length === 0) {
             content = <View style={ styles.ingWrap } >

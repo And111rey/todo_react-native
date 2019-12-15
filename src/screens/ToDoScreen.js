@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { StyleSheet, View, Text, Button, Dimensions } from "react-native"
 // Button - отвечает за создание кнопки
 import { THEME } from "../theme"
@@ -6,14 +6,21 @@ import { EditModal } from "../components/EditModal"
 import { AppCard } from "../components/ui/AppCard"
 // import { AppTextBolb } from "../components/ui/AppTextBold"
 import { MaterialIcons, Foundation, Entypo } from "@expo/vector-icons"
+import { TodoContext } from "../context/todo/todoContext"
+import { ScreanContext } from "../context/screen/screenContext"
 
 
-export const TodoScreen = ({onRemove, goBack, todo, onSave }) => {
+export const TodoScreen = () => {
+
+    const {todos, upDateTodo, removeTodo} = useContext(TodoContext) 
+    const {todoId, changeScreen} = useContext(ScreanContext)
 
     const [modal, setModal] =  useState(false)
     
+    const todo = todos.find(t => t.id === todoId)
+
     const saveHandler = (title) => {
-        onSave(todo.id, title)
+        upDateTodo(todo.id, title)
         setModal(false)
     }
     
@@ -34,10 +41,10 @@ export const TodoScreen = ({onRemove, goBack, todo, onSave }) => {
             <AppCard>
                 <View style={styles.buttons} > 
                     <View style={styles.btn}>
-                        <Entypo.Button name="back" color={THEME.MAIN_COLOR} onPress={goBack}>Назад</Entypo.Button>
+                        <Entypo.Button name="back" color={THEME.MAIN_COLOR} onPress={()=>{changeScreen(null)}}>Назад</Entypo.Button>
                     </View>
                     <View style={styles.btn}>
-                        <MaterialIcons.Button name="delete" color={THEME.DANGER_COLOR} onPress={()=> {onRemove(todo.id)}}>Удалить</MaterialIcons.Button>
+                        <MaterialIcons.Button name="delete" color={THEME.DANGER_COLOR} onPress={()=> {removeTodo(todo.id)}}>Удалить</MaterialIcons.Button>
                     </View>
                 </View>
             </AppCard>
